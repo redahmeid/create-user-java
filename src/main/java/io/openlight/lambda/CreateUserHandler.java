@@ -6,7 +6,6 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.aws.codestar.projecttemplates.GatewayResponse;
 
 /**
  * Handler for requests to Lambda function.
