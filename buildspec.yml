@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Entering build phase...
       - echo Build started on `date`
-      - mvn package
+      - mvn package shade:shade
       - mv target/create-user-1.0.jar .
       - unzip create-user-1.0.jar
       - rm -rf target src buildspec.yml pom.xml create-user-1.0.jar
