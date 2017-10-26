@@ -3,6 +3,7 @@ package io.openlight.lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.google.gson.Gson;
 
 import io.openlight.domain.User;
@@ -13,23 +14,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CreateUserHandler implements RequestHandler<APIGatewayProxyRequestEvent, Object> {
+public class CreateUserHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     Gson gson = new Gson();
 
-    public GatewayResponse handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Content-Type", "application/json");
-        System.out.println(gson.toJson(input));
+    public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
+
         User user = gson.fromJson(input.getBody(),User.class);
-        String id = Inserter.insert(user.name,user.email);
+        String id = Inserter.insert(user.username,user.name,user.email);
         Link link = new Link();
         link.location = "http://api.openlight.io/users/"+id;
         String linkJson = gson.toJson(link);
 
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", "application/json");
 
-
-
-        return new GatewayResponse(linkJson,headers, 201);
+        return new APIGatewayProxyResponseEvent().withBody(linkJson).withHeaders(headers).withStatusCode(201);
     }
 }
