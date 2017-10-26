@@ -11,15 +11,15 @@ public class Finder {
         Driver driver = GraphDatabase.driver( "bolt://hobby-djjfigaajbbfgbkeaecpfepl.dbs.graphenedb.com:24786", AuthTokens.basic( "openlight", "b.6GGBQb5zVyyC.AGcbmyfCH0dLlifb" ) );
         User user = new User();
         Session session = driver.session();
-        StatementResult result = session.run("MATCH (n:User { username: '"+username+"' }) RETURN n");
+        StatementResult result = session.run("MATCH (n:User { username: '"+username+"' }) RETURN n.username AS username, n.name AS name, n.email AS email");
 
         while ( result.hasNext() )
         {
             Record record = result.next();
-            user.username = record.get("n.username").asString();
-            user.email = record.get("n.email").asString();
-            user.name = record.get("n.name").asString();
-            System.out.println( record );
+            user.username = record.get("username").asString();
+            user.email = record.get("email").asString();
+            user.name = record.get("name").asString();
+            
         }
 
         session.close();
