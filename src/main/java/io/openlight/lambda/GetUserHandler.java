@@ -37,7 +37,7 @@ public class GetUserHandler implements RequestHandler<APIGatewayProxyRequestEven
         Links links = new Links();
         links.addLink(link);
 
-        response.actions = links;
+        response.actions.add(link);
         String userJson = gson.toJson(response);
 
         Map<String, String> headers = new HashMap<>();
