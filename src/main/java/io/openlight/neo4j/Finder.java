@@ -16,10 +16,10 @@ public class Finder {
         while ( result.hasNext() )
         {
             Record record = result.next();
-            user.username = record.get("username").asString();
-            user.email = record.get("email").asString();
-            user.name = record.get("name").asString();
-            System.out.println( record.get("name").asString() );
+            user.username = record.get("n.username").asString();
+            user.email = record.get("n.email").asString();
+            user.name = record.get("n.name").asString();
+            System.out.println( record );
         }
 
         session.close();

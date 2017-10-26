@@ -9,7 +9,7 @@ Parameters:
     Description: Creating a user for books API
 
 Resources:
-  PostCreateUser:
+  CreateUser:
     Type: AWS::Serverless::Function
     Properties:
       Handler: io.openlight.lambda.CreateUserHandler
