@@ -4,9 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.google.gson.Gson;
 
-import io.openlight.domain.User;
 import io.openlight.response.Link;
-import io.openlight.response.UserResponse;
 
 import java.util.HashMap;
 import java.util.Map;
