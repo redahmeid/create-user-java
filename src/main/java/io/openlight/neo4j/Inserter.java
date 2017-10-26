@@ -10,12 +10,12 @@ public class Inserter {
         Session session = driver.session();
 
         session.run("CREATE (n:User {name:'"+name+"', email:'"+email+"'})");
-        StatementResult result = session.run("MATCH (n:User) RETURN n.id AS id");
+        StatementResult result = session.run("MATCH (n:User) RETURN ID");
         String id = "";
         while ( result.hasNext() )
         {
             Record record = result.next();
-            System.out.println( record.get("id").asString() );
+            System.out.println( record );
             id = record.get("id").asString();
         }
 
