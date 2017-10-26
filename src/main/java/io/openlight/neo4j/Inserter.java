@@ -5,7 +5,7 @@ import org.neo4j.driver.v1.*;
 public class Inserter {
 
     public static String insert(String name, String email){
-        Driver driver = GraphDatabase.driver( "bolt://hobby-geefdaeefcom.dbs.graphenedb.com:24786", AuthTokens.basic( "v303", "GtGq5rldxu" ) );
+        Driver driver = GraphDatabase.driver( "bolt://hobby-djjfigaajbbfgbkeaecpfepl.dbs.graphenedb.com:24786", AuthTokens.basic( "openlight", "b.6GGBQb5zVyyC.AGcbmyfCH0dLlifb" ) );
 
         Session session = driver.session();
 
