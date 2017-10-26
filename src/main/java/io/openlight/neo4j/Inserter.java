@@ -10,7 +10,7 @@ public class Inserter {
         Session session = driver.session();
 
         session.run("CREATE (n:User {name:'"+name+"', email:'"+email+"'})");
-        StatementResult result = session.run("MATCH (n:User) RETURN ID");
+        StatementResult result = session.run("MATCH (n:User) RETURN ID(n)");
         String id = "";
         while ( result.hasNext() )
         {
