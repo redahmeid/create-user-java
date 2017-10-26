@@ -9,7 +9,7 @@ Parameters:
     Description: Creating a user for books API
 
 Resources:
-  PostHelloWorld:
+  PostCreateUser:
     Type: AWS::Serverless::Function
     Properties:
       Handler: io.openlight.lambda.CreateUserHandler
@@ -23,3 +23,17 @@ Resources:
           Properties:
             Path: /
             Method: post
+  GetUser:
+      Type: AWS::Serverless::Function
+      Properties:
+        Handler: io.openlight.lambda.GetUserHandler
+        Runtime: java8
+        Role:
+          Fn::ImportValue:
+            !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+        Events:
+          GetEvent:
+            Type: Api
+            Properties:
+              Path: /
+              Method: get

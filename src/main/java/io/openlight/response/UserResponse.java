@@ -6,4 +6,5 @@ public class UserResponse{
 
     public User body;
     public Links actions;
+    public String self;
 }

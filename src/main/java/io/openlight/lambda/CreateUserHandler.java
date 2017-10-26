@@ -23,7 +23,7 @@ public class CreateUserHandler implements RequestHandler<APIGatewayProxyRequestE
         User user = gson.fromJson(input.getBody(),User.class);
         String id = Inserter.insert(user.username,user.name,user.email);
         Link link = new Link();
-        link.location = "http://api.openlight.io/users/"+id;
+        link.location = "http://api.openlight.io/users/"+user.username;
         String linkJson = gson.toJson(link);
 
         Map<String, String> headers = new HashMap<>();
