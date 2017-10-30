@@ -29,9 +29,9 @@ Resources:
       MemorySize: 300
       Environment:
         Variables:
-          NeoUser: !Ref 'neo_user'
-          NeoPassword: !Ref 'neo_password'
-          NeoUrl: !Ref 'neo_url'
+          neo_user: !Ref NeoUser
+          neo_password: !Ref NeoPassword
+          neo_url: !Ref NeoUrl
       Role:
         Fn::ImportValue:
           !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
