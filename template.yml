@@ -14,6 +14,12 @@ Resources:
     Properties:
       Handler: io.openlight.lambda.CreateUserHandler
       Runtime: java8
+      MemorySize: 300
+      Environment:
+        Variables:
+          neo_user: !Ref 'neo_user'
+          neo_url: !Ref 'neo_url'
+          neo_password: !Ref 'neo_password'
       Role:
         Fn::ImportValue:
           !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
@@ -21,13 +27,14 @@ Resources:
         PostEvent:
           Type: Api
           Properties:
-            Path: /
+            Path: /users
             Method: post
   GetUser:
       Type: AWS::Serverless::Function
       Properties:
         Handler: io.openlight.lambda.GetUserHandler
         Runtime: java8
+        MemorySize: 300
         Role:
           Fn::ImportValue:
             !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
@@ -35,5 +42,5 @@ Resources:
           GetEvent:
             Type: Api
             Properties:
-              Path: /
+              Path: /users/{username}
               Method: get

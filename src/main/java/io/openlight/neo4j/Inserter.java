@@ -7,17 +7,12 @@ import java.util.UUID;
 public class Inserter {
 
     public static String insert(String username,String name, String email){
-        Driver driver = GraphDatabase.driver( "bolt://hobby-djjfigaajbbfgbkeaecpfepl.dbs.graphenedb.com:24786", AuthTokens.basic( "openlight", "b.6GGBQb5zVyyC.AGcbmyfCH0dLlifb" ) );
-
+        Driver driver = GraphDatabase.driver( System.getenv("neo_url"), AuthTokens.basic( System.getenv("neo_user"), System.getenv("neo_password") ) );
         Session session = driver.session();
         UUID id = UUID.randomUUID();
-        session.run("CREATE (n:User {id:'"+id.toString()+"',username:'"+username+"',name:'"+name+"', email:'"+email+"'})");
-        StatementResult result = session.run("MATCH (n:User) RETURN ID(n)");
-
-
+        session.run("CREATE (n:User {username:'"+username+"',name:'"+name+"', email:'"+email+"'})");
         session.close();
         driver.close();
-
-        return id.toString();
+        return username;
     }
 }
