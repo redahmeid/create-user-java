@@ -7,13 +7,13 @@ Parameters:
   ProjectId:
     Type: String
     Description: Creating a user for books API
-  neo_user:
+  NeoUser:
     Type: String
     Description: username for neo4j instance
-  neo_password:
+  NeoPassword:
       Type: String
       Description: password for neo4j instance
-  neo_url:
+  NeoUrl:
       Type: String
       Description: url for neo4j instance
 
@@ -26,9 +26,9 @@ Resources:
       MemorySize: 300
       Environment:
         Variables:
-          neo_user: !Ref 'neo_user'
-          neo_url: !Ref 'neo_url'
-          neo_password: !Ref 'neo_password'
+          NeoUser: !Ref 'neo_user'
+          NeoPassword: !Ref 'neo_url'
+          NeoUrl: !Ref 'neo_password'
       Role:
         Fn::ImportValue:
           !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
