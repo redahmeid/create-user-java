@@ -7,6 +7,15 @@ Parameters:
   ProjectId:
     Type: String
     Description: Creating a user for books API
+  neo_user:
+    Type: String
+    Description: username for neo4j instance
+  neo_password:
+      Type: String
+      Description: password for neo4j instance
+  neo_url:
+      Type: String
+      Description: url for neo4j instance
 
 Resources:
   CreateUser:
